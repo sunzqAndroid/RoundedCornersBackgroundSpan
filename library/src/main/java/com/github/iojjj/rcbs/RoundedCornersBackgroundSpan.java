@@ -97,7 +97,7 @@ public final class RoundedCornersBackgroundSpan implements LineBackgroundSpan {
             final int startInText = start < backgroundHolder.mStart ? backgroundHolder.mStart : start;
             final int endInText = end > backgroundHolder.mEnd ? backgroundHolder.mEnd : end;
             // skip empty parts
-            if (startInText == endInText) {
+            if (startInText >= endInText) {
                 continue;
             }
             float l = p.measureText(text, start, startInText);
@@ -110,6 +110,7 @@ public final class RoundedCornersBackgroundSpan implements LineBackgroundSpan {
 
     /**
      * Get number of space characters from the beginning of text.
+     *
      * @param text any text
      * @return number of space characters from text beginning
      */
@@ -125,7 +126,8 @@ public final class RoundedCornersBackgroundSpan implements LineBackgroundSpan {
 
     /**
      * Get number of space characters from the end of text.
-     * @param text any text
+     *
+     * @param text  any text
      * @param start number of space characters from beginning of text
      * @return number of space characters from the end of text
      */
@@ -179,8 +181,9 @@ public final class RoundedCornersBackgroundSpan implements LineBackgroundSpan {
 
         /**
          * Constructor.
+         *
          * @param context instance of Context
-         * @param text any text
+         * @param text    any text
          */
         public EntireTextBuilder(@NonNull Context context, @NonNull CharSequence text) {
             mContext = context.getApplicationContext();
@@ -189,6 +192,7 @@ public final class RoundedCornersBackgroundSpan implements LineBackgroundSpan {
 
         /**
          * Constructor.
+         *
          * @param context instance of Context
          * @param textRes string ID of text
          */
@@ -198,6 +202,7 @@ public final class RoundedCornersBackgroundSpan implements LineBackgroundSpan {
 
         /**
          * Set corners radius.
+         *
          * @param radius corners radius in pixels.
          */
         public EntireTextBuilder setCornersRadius(float radius) {
@@ -207,6 +212,7 @@ public final class RoundedCornersBackgroundSpan implements LineBackgroundSpan {
 
         /**
          * Set text padding.
+         *
          * @param padding text padding in pixels
          */
         public EntireTextBuilder setTextPadding(float padding) {
@@ -216,6 +222,7 @@ public final class RoundedCornersBackgroundSpan implements LineBackgroundSpan {
 
         /**
          * Set text padding from resources.
+         *
          * @param paddingRes dimen ID of padding
          */
         public EntireTextBuilder setTextPaddingRes(@DimenRes int paddingRes) {
@@ -224,6 +231,7 @@ public final class RoundedCornersBackgroundSpan implements LineBackgroundSpan {
 
         /**
          * Set corners radius from resources.
+         *
          * @param radiusRes dimen ID of radius
          */
         public EntireTextBuilder setCornersRadiusRes(@DimenRes int radiusRes) {
@@ -232,9 +240,10 @@ public final class RoundedCornersBackgroundSpan implements LineBackgroundSpan {
 
         /**
          * Add background to text.
+         *
          * @param bgColor background color
-         * @param start start offset of background
-         * @param end end offset of background
+         * @param start   start offset of background
+         * @param end     end offset of background
          */
         public EntireTextBuilder addBackground(@ColorInt int bgColor, int start, int end) {
             BackgroundHolder backgroundHolder = new BackgroundHolder(bgColor, start, end);
@@ -244,9 +253,10 @@ public final class RoundedCornersBackgroundSpan implements LineBackgroundSpan {
 
         /**
          * Add background to text from resources.
+         *
          * @param bgColorRes color ID of background
-         * @param start start offset of background
-         * @param end end offset of background
+         * @param start      start offset of background
+         * @param end        end offset of background
          */
         public EntireTextBuilder addBackgroundRes(@ColorRes int bgColorRes, int start, int end) {
             return addBackground(getColor(mContext, bgColorRes), start, end);
@@ -254,6 +264,7 @@ public final class RoundedCornersBackgroundSpan implements LineBackgroundSpan {
 
         /**
          * Create a spanned string that contains RoundedCornersBackgroundSpan.
+         *
          * @return spanned string
          */
         public Spanned build() {
@@ -277,6 +288,7 @@ public final class RoundedCornersBackgroundSpan implements LineBackgroundSpan {
 
         /**
          * Constructor.
+         *
          * @param context instance of Context
          */
         public TextPartsBuilder(@NonNull Context context) {
@@ -285,6 +297,7 @@ public final class RoundedCornersBackgroundSpan implements LineBackgroundSpan {
 
         /**
          * Set corners radius.
+         *
          * @param radius corners radius in pixels.
          */
         public TextPartsBuilder setCornersRadius(float radius) {
@@ -294,6 +307,7 @@ public final class RoundedCornersBackgroundSpan implements LineBackgroundSpan {
 
         /**
          * Set text padding.
+         *
          * @param padding text padding in pixels
          */
         public TextPartsBuilder setTextPadding(float padding) {
@@ -303,6 +317,7 @@ public final class RoundedCornersBackgroundSpan implements LineBackgroundSpan {
 
         /**
          * Set text padding from resources.
+         *
          * @param paddingRes dimen ID of padding
          */
         public TextPartsBuilder setTextPaddingRes(@DimenRes int paddingRes) {
@@ -311,6 +326,7 @@ public final class RoundedCornersBackgroundSpan implements LineBackgroundSpan {
 
         /**
          * Set corners radius from resources.
+         *
          * @param radiusRes dimen ID of radius
          */
         public TextPartsBuilder setCornersRadiusRes(@DimenRes int radiusRes) {
@@ -319,6 +335,7 @@ public final class RoundedCornersBackgroundSpan implements LineBackgroundSpan {
 
         /**
          * Set separator between text parts.
+         *
          * @param separator any separator
          */
         public TextPartsBuilder setSeparator(@NonNull CharSequence separator) {
@@ -328,8 +345,9 @@ public final class RoundedCornersBackgroundSpan implements LineBackgroundSpan {
 
         /**
          * Add text part with background.
+         *
          * @param textPart text part
-         * @param bgColor background color
+         * @param bgColor  background color
          */
         public TextPartsBuilder addTextPart(@NonNull CharSequence textPart, @ColorInt int bgColor) {
             BackgroundHolder backgroundHolder = new BackgroundHolder(bgColor, 0, 0);
@@ -340,7 +358,8 @@ public final class RoundedCornersBackgroundSpan implements LineBackgroundSpan {
 
         /**
          * Add text part with background from resources.
-         * @param textRes string ID of text part
+         *
+         * @param textRes    string ID of text part
          * @param bgColorRes color ID of background
          */
         public TextPartsBuilder addTextPart(@StringRes int textRes, @ColorRes int bgColorRes) {
@@ -349,6 +368,7 @@ public final class RoundedCornersBackgroundSpan implements LineBackgroundSpan {
 
         /**
          * Add text part without background.
+         *
          * @param textPart text part
          */
         public TextPartsBuilder addTextPart(@NonNull CharSequence textPart) {
@@ -359,6 +379,7 @@ public final class RoundedCornersBackgroundSpan implements LineBackgroundSpan {
 
         /**
          * Add text part without background from resources.
+         *
          * @param textRes string ID of text part
          */
         public TextPartsBuilder addTextPart(@StringRes int textRes) {
@@ -367,6 +388,7 @@ public final class RoundedCornersBackgroundSpan implements LineBackgroundSpan {
 
         /**
          * Create a spanned string that contains RoundedCornersBackgroundSpan.
+         *
          * @return spanned string
          */
         public Spannable build() {
@@ -394,7 +416,7 @@ public final class RoundedCornersBackgroundSpan implements LineBackgroundSpan {
 
     /**
      * Returns a color associated with a particular resource ID
-     * <p>
+     * <p/>
      * Starting in {@link android.os.Build.VERSION_CODES#M}, the returned
      * color will be styled for the specified Context's theme.
      *
@@ -403,7 +425,7 @@ public final class RoundedCornersBackgroundSpan implements LineBackgroundSpan {
      *           entry. The value 0 is an invalid identifier.
      * @return A single color value in the form 0xAARRGGBB.
      * @throws android.content.res.Resources.NotFoundException if the given ID
-     *         does not exist.
+     *                                                         does not exist.
      */
     private static int getColor(@NonNull Context context, @ColorRes int id) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
